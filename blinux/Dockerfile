@@ -61,11 +61,13 @@ ADD SFML-2.3 $SFML_PATH
 RUN cmake -L -B$SFML_PATH -H$SFML_PATH
 RUN make -C $SFML_PATH all
 RUN make -C $SFML_PATH install
+RUN make -C $SFML_PATH clean
 
 ENV LAPIN_PATH /usr/src/liblapin
 ADD liblapin $LAPIN_PATH
 RUN make -C $LAPIN_PATH  title erase all-quiet
 RUN make -C $LAPIN_PATH install
+RUN make -C $LAPIN_PATH fclean
 
 ADD .bashrc /etc/skel/.bashrc
 ADD bugs /usr/bin/bugs
