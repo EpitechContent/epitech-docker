@@ -1,4 +1,4 @@
-FROM epitechcontent/blinux:latest
+FROM epitechcontent/blinux:lapin
 MAINTAINER Thomas Dufour <thomas.dufour@epitech.eu>
 
 RUN zypper -n install \
