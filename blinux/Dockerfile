@@ -35,7 +35,6 @@ RUN zypper --non-interactive install \
 #    emacs-nox \
 #    less \
 #    strace
-
 #ADD lapin /root/lapin
 
 # lib_lapin dependencies
