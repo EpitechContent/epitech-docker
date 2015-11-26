@@ -30,6 +30,14 @@ RUN zypper --non-interactive install \
 RUN zypper --non-interactive install \
     glibc-locale
 
+# Debug stuff
+#RUN zypper --non-interactive install \
+#    emacs-nox \
+#    less \
+#    strace
+
+#ADD lapin /root/lapin
+
 # lib_lapin dependencies
 RUN zypper --non-interactive install \
     freetype-devel \
@@ -51,23 +59,29 @@ RUN zypper --non-interactive install \
     libudev-devel \
     cmake
 
-ENV MLX_PATH /usr/src/minilibx
-ADD minilibx $MLX_PATH
-RUN make -C $MLX_PATH install
-RUN make -C $MLX_PATH clean
-
-ENV SFML_PATH /usr/src/SFML-2.3
-ADD SFML-2.3 $SFML_PATH
-RUN cmake -L -B$SFML_PATH -H$SFML_PATH
-RUN make -C $SFML_PATH all
-RUN make -C $SFML_PATH install
-RUN make -C $SFML_PATH clean
-
-ENV LAPIN_PATH /usr/src/liblapin
-ADD liblapin $LAPIN_PATH
-RUN make -C $LAPIN_PATH  title erase all-quiet
-RUN make -C $LAPIN_PATH install
-RUN make -C $LAPIN_PATH fclean
-
 ADD .bashrc /etc/skel/.bashrc
 ADD bugs /usr/bin/bugs
+
+WORKDIR /usr/src/minilibx
+ADD minilibx .
+RUN make install
+RUN make clean
+
+WORKDIR /usr/src/SFML-2.3
+ADD SFML-2.3 . 
+RUN cmake -L 
+RUN make all
+RUN make install
+RUN make clean
+
+
+WORKDIR /usr/src/liblapin
+ADD liblapin .
+RUN make title erase all-quiet
+RUN make install
+RUN make fclean
+
+ENV LD_LIBRARY_PATH /usr/local/lib
+ENV DISPLAY 0.0
+
+WORKDIR /
