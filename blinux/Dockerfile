@@ -23,8 +23,10 @@ RUN zypper -n install          \
     php5-mbstring              \
     python-numpy               \
     python3                    \
+    python3-pip                \
     python3-numpy              \
     ruby
+RUN pip3 install -Iv pexpect==4.0.1
 RUN zypper -n install \
     tmux              \
     valgrind          \
