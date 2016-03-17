@@ -1,4 +1,4 @@
-FROM epitechcontent/blinux:latest
+FROM epitechcontent/blinux:beta
 MAINTAINER Thomas Dufour <thomas.dufour@epitech.eu>
 
 ENV LANG en_US.UTF-8
