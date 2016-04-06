@@ -26,13 +26,3 @@ bugs -out "txt xunit" -rec "graph api" -login "$BUGS_LOGIN" -city "$BUGS_CITY" -
 
 # retrieve run artifacts
 cd $IPWD
-cp mouli/trace.txt .
-cp mouli/note.txt .
-cp mouli/tests_report.xml .
-
-# wipe mouli folder
-if [ -z ${NODEL+x} ]
-then
-	rm -rf mouli
-fi
-
