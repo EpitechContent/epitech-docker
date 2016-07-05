@@ -1,20 +1,4 @@
 FROM epitechcontent/blinux:latest
 MAINTAINER Thomas Dufour <thomas.dufour@epitech.eu>
 
-RUN zypper -n install \
-    emacs             \
-    nano              \
-    vim
-
-ENV LANG en_US.UTF-8
-ENV LANGUAGE en_US:en
-ENV LC_ALL en_US.UTF-8
-
-
-RUN useradd -md /home/bill bill
-USER bill
-
-ENV USER bill
-
-WORKDIR /home/bill/workspace
-ENTRYPOINT exec /bin/bash
+ENTRYPOINT exec /usr/bin/discontinued.sh
